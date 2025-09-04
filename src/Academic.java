@@ -5,7 +5,7 @@
     }
     @Override
     public int getLoanLimit() {
-        return 0; // Method stub with dummy return value. Implement your own logic here then remove the comment.
+        return 10; //An academic can take up to 10 loans at a time
     }
 
     @Override

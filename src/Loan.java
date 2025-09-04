@@ -56,6 +56,6 @@ public class Loan {
 
     // Getter method for the library item associated with the loan.
     public LibraryItem getLibraryItem() {
-        return null; // Dummy return value. Implement your own logic here then remove the comment.
+        return libraryItem;  //returns a library item assigned to a loan
     }
 }

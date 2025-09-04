@@ -4,13 +4,13 @@ public abstract class LibraryUser {
 
     private String name;
     private boolean isSuspended;
-    private Loan loan;
+    private List<Loan> loans;
 
     // LibraryUser Constructor
     public LibraryUser (String name) {
         this.name = name;
         isSuspended = false;
-        loan = null;
+        this.loans = new ArrayList<>();
     }
 
     // Setter for the user’s name. Should throw an appropriate exception if the name is not valid.
@@ -26,7 +26,7 @@ public abstract class LibraryUser {
     // Assigns the specified loan to the user. This method should perform appropriate validation checks to ensure that
     // the loan is valid for the user, and throw appropriate exceptions as needed.
     public void assignLoan(Loan loan) {
-
+        loans.add(loan);
     }
 
     // Removes the specified loan from the user. Should throw an appropriate exception if the loan is not valid.
@@ -42,7 +42,7 @@ public abstract class LibraryUser {
     // Returns a list of loans currently active for the user.
     // This should be an unmodifiable list to prevent unexpected modification.
     public List<Loan> getLoans () {
-        return null; // Dummy return value. Implement your own logic here then remove the comment.
+        return Collections.unmodifiableList(loans);
     }
 
     // Returns the total amount of fines that the user has accrued.

@@ -4,7 +4,7 @@ public class Student extends LibraryUser {
         // Implement your own logic here (if needed) then remove the comment.
     }
     public int getLoanLimit() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 5; //Student can take up to 5 loans
     }
 
     public int getLoanPeriodForItem(LibraryItem item) {

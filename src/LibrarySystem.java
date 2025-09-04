@@ -20,6 +20,7 @@ public class LibrarySystem {
     //List to save Library Items
     private List<LibraryItem>items;
 
+
     // LibrarySystem Constructor.
     public LibrarySystem() {
         users = new ArrayList<>(); //Initializing the list for users
@@ -48,6 +49,7 @@ public class LibrarySystem {
     // an appropriate exception (e.g., it should throw LoanLimitExceededException if the user is already at their borrow limit).
     public void loanItem(LibraryItem item, LibraryUser user) {
         Loan loan = new Loan(item, user, dateManager.getCurrentDay());
+        user.assignLoan(loan);
 
     }
 
@@ -75,10 +77,12 @@ public class LibrarySystem {
     public List<LibraryItem> getBorrowableItems () {
         List<LibraryItem>borrowableItems = new ArrayList<>();
         for (LibraryItem item: items) {
-            if (item.isOnLoan()){
+            if (!item.isOnLoan() & item.isAvailableForLoan()){
                 borrowableItems.add(item);
             }
         }
         return borrowableItems;
     }
+
+
 }

@@ -12,7 +12,7 @@ public class ExternalBorrower extends LibraryUser {
 
     @Override
     public int getLoanLimit() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 2; //ExternalBorrower can take only up to 2 loans at a time
     }
 
     @Override
