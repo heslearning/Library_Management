@@ -17,12 +17,12 @@ public class ExternalBorrower extends LibraryUser {
 
     @Override
     public double getFineRateModifier() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 2.0;
     }
 
     @Override
     public double getFineSuspensionLimit() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 5; //Maximum value of fine before suspension
     }
 
     @Override

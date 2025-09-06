@@ -21,17 +21,17 @@ public class Magazine extends LibraryItem {
     }
     @Override
     public double getDailyLateFee() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 0.50;
     }
 
     @Override
     public int getBaseLoanPeriod() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 14;
     }
 
     @Override
     public double getMaximumFine() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 10;
     }
 
     @Override

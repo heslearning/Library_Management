@@ -21,17 +21,17 @@ public class DVD extends LibraryItem {
 
     @Override
     public double getDailyLateFee() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 1;
     }
 
     @Override
     public int getBaseLoanPeriod() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 7;
     }
 
     @Override
     public double getMaximumFine() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 30;
     }
 
     @Override

@@ -30,12 +30,12 @@ public abstract class LibraryItem {
     // Assigns the specified loan to the item. This method should perform appropriate validation checks to ensure
     // that the loan is valid for the item, and throw appropriate exceptions as needed.
     public void assignLoan(Loan loan) {
-        // Implement your own logic here then remove the comment.
+        this.loan = loan;
     }
 
     // Removes the specified loan from the user. Should throw an appropriate exception if the loan is not valid.
     public void removeLoan() {
-        // Implement your own logic here then remove the comment.
+        loan = null;
     }
 
     // Returns true if currently loaned, otherwise false.

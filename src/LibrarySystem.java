@@ -48,8 +48,13 @@ public class LibrarySystem {
     // This method should loan a specific library item to a specific user. If the loan is not valid, it should throw
     // an appropriate exception (e.g., it should throw LoanLimitExceededException if the user is already at their borrow limit).
     public void loanItem(LibraryItem item, LibraryUser user) {
-        Loan loan = new Loan(item, user, dateManager.getCurrentDay());
-        user.assignLoan(loan);
+        if (user.getLoans().size() >= user.getLoanLimit())
+            throw new LoanLimitExceededException("Loan limit exceeded.");
+        else if (!item.isAvailableForLoan()) {
+            throw new ItemNotLoanableException("This item can not be loaned");
+        }
+        Loan loan = new Loan(item, user, dateManager);
+        loan.processLoan();
 
     }
 
@@ -57,7 +62,9 @@ public class LibrarySystem {
     // If the item is overdue, you do not need to write code to handle paying the fines. Assume that the fines were
     // paid by the user during the return process.
     public void returnItem(LibraryItem item) {
-        // Implement your own logic here then remove the comment.
+        Loan loan = item.getCurrentLoan();
+        loan.processReturn();
+
     }
 
     // This method returns a list of all library users in the system.

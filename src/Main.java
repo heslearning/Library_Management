@@ -182,6 +182,7 @@ public class Main {
             return;
         }
 
+
         List<LibraryItem> availableItems = librarySystem.getBorrowableItems();
         if (availableItems.isEmpty()) {
             System.out.println("\nNo items available for loan. Please check back later.");
@@ -199,7 +200,7 @@ public class Main {
     }
 
     // Handle all the interface control flow logic for selecting a user from a list.
-    private static LibraryUser selectUser() {
+    private static LibraryUser  selectUser() {
         System.out.println("\nLibrary Users");
         List<LibraryUser> users = librarySystem.getUsers();
         if (users.isEmpty()) {

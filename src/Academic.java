@@ -10,17 +10,17 @@
 
     @Override
     public int getLoanPeriodForItem(LibraryItem item) {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 14;
     }
 
     @Override
     public double getFineRateModifier() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 1.0;
     }
 
     @Override
     public double getFineSuspensionLimit() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 20; //Maximum value of fine before suspension
     }
 
     @Override

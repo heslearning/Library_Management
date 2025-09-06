@@ -17,7 +17,7 @@ public class ReferenceOnlyBook extends Book {
 
     @Override
     public int getBaseLoanPeriod() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 0;
     }
 
     @Override

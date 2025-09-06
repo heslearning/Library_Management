@@ -8,16 +8,16 @@ public class Student extends LibraryUser {
     }
 
     public int getLoanPeriodForItem(LibraryItem item) {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 7;
     }
 
     public double getFineRateModifier() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 0.75;
     }
 
     @Override
     public double getFineSuspensionLimit() {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        return 10; //Maximum value of fine before suspension
     }
 
     @Override
