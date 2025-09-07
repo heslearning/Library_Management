@@ -8,11 +8,14 @@ public class Student extends LibraryUser {
     }
 
     public int getLoanPeriodForItem(LibraryItem item) {
-        return 7;
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+        return  item.getBaseLoanPeriod() + 7; //item's base loan period plus student's additional loan period
     }
 
     public double getFineRateModifier() {
-        return 0.75;
+        return 0.75; // Pays the 75% of the fine
     }
 
     @Override

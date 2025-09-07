@@ -1,24 +1,27 @@
 public class Book extends LibraryItem {
     private String isbn;
 
+
     public Book(String title, String isbn) {
 
         super(title);
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw  new IllegalArgumentException("ISBN cannot be null.");
+        }
         this.isbn = isbn;
     }
 
     public String getISBN() {
-        return isbn; // Dummy return value. Implement your own logic here then remove the comment.
+        return isbn; //returns constructor value
     }
 
     public void setISBN(String isbn) {
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("ISBN cannot be null.");
+        }
         this.isbn = isbn;
     }
 
-    @Override
-    public boolean isAvailableForLoan(){
-        return true;
-    }
 
     @Override
     public double getDailyLateFee() {
@@ -32,7 +35,7 @@ public class Book extends LibraryItem {
 
     @Override
     public double getMaximumFine() {
-        return 20;
+        return 20; //Max fine for an item
     }
 
     @Override

@@ -33,6 +33,9 @@ public class LibrarySystem {
         if (item == null) {
             throw new IllegalArgumentException("Cannot add a null item");
         }
+        if (items.contains(item)) {
+            throw new IllegalArgumentException("Item is already added");
+        }
         items.add(item);
 
     }
@@ -48,11 +51,18 @@ public class LibrarySystem {
     // This method should loan a specific library item to a specific user. If the loan is not valid, it should throw
     // an appropriate exception (e.g., it should throw LoanLimitExceededException if the user is already at their borrow limit).
     public void loanItem(LibraryItem item, LibraryUser user) {
+        if (item == null) {throw new IllegalArgumentException("Item cannot be null");}
+        if (!items.contains(item)){
+            throw new IllegalArgumentException("Item is not added to the database");
+        }
+        if (!users.contains(user)) {throw new IllegalArgumentException(("The user is not added to the database"));}
+        if (user == null) {throw new IllegalArgumentException("User cannot be null");}
         if (user.getLoans().size() >= user.getLoanLimit())
             throw new LoanLimitExceededException("Loan limit exceeded.");
-        else if (!item.isAvailableForLoan()) {
+        if (!item.isAvailableForLoan()) {
             throw new ItemNotLoanableException("This item can not be loaned");
         }
+
         Loan loan = new Loan(item, user, dateManager);
         loan.processLoan();
 
@@ -70,13 +80,13 @@ public class LibrarySystem {
     // This method returns a list of all library users in the system.
     // This method should return an unmodifiable list to prevent modification.
     public List<LibraryUser> getUsers () {
-        return users;
+        return Collections.unmodifiableList(users);
     }
 
     // This method should return a list of all library items in the system.
     // This method should return an unmodifiable list to prevent modification.
     public List<LibraryItem> getLibraryItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 
     // This method should return a list of all library items which can currently be borrowed in the system.
@@ -84,7 +94,7 @@ public class LibrarySystem {
     public List<LibraryItem> getBorrowableItems () {
         List<LibraryItem>borrowableItems = new ArrayList<>();
         for (LibraryItem item: items) {
-            if (!item.isOnLoan() & item.isAvailableForLoan()){
+            if (!item.isOnLoan() && item.isAvailableForLoan()){
                 borrowableItems.add(item);
             }
         }

@@ -7,7 +7,10 @@ public class ExternalBorrower extends LibraryUser {
 
     @Override
     public int getLoanPeriodForItem(LibraryItem item) {
-        return 0; // Dummy return value. Implement your own logic here then remove the comment.
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+        return item.getBaseLoanPeriod();
     }
 
     @Override
@@ -17,7 +20,7 @@ public class ExternalBorrower extends LibraryUser {
 
     @Override
     public double getFineRateModifier() {
-        return 2.0;
+        return 2.0; //Pays 2 times of original fine after due date
     }
 
     @Override

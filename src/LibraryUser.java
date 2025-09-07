@@ -8,12 +8,18 @@ public abstract class LibraryUser {
 
     // LibraryUser Constructor
     public LibraryUser (String name) {
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
         this.name = name;
         this.loans = new ArrayList<>();
     }
 
     // Setter for the user’s name. Should throw an appropriate exception if the name is not valid.
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty()){
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
         this.name = name;
     }
 
@@ -25,16 +31,21 @@ public abstract class LibraryUser {
     // Assigns the specified loan to the user. This method should perform appropriate validation checks to ensure that
     // the loan is valid for the user, and throw appropriate exceptions as needed.
     public void assignLoan(Loan loan) {
-        if (loan.getLibraryItem().getCurrentLoan() == null & loans.contains(loan.getLibraryItem()))
-            throw new ItemUnavailableException("Item has already been loaned out");
-        else if (this.isAtLoanLimit()) {
-            throw new LoanLimitExceededException("The user is on at loan limit.");
+        if (loan == null) {
+            throw new IllegalArgumentException("Loan cannot be null.");
+        }
+        if (this.isAtLoanLimit()) {
+                throw new LoanLimitExceededException("The user is on at loan limit.");
+
         }
         loans.add(loan);
     }
 
     // Removes the specified loan from the user. Should throw an appropriate exception if the loan is not valid.
     public void removeLoan(Loan loan) {
+        if (loan == null) {
+            throw new IllegalArgumentException("Cannot remove a null loan.");
+        }
         loans.remove(loan);
     }
 
@@ -55,9 +66,9 @@ public abstract class LibraryUser {
     // Returns the total amount of fines that the user has accrued.
     public double getTotalFines() {
         double total = 0.0;
-        for (Loan loans : getLoans()) {
-            if (loans.isOverdue()) {
-                total = loans.getOverdueDays()*loans.getLibraryItem().getDailyLateFee() + loans.getLoanFine();
+        for (Loan loan : getLoans()) {
+            if (loan.isOverdue()) {
+                total += loan.getLoanFine();
             }
         }
         return total;
@@ -65,7 +76,7 @@ public abstract class LibraryUser {
 
     // Returns true if the user is already at their loan limit and cannot borrow more items.
     public boolean isAtLoanLimit () {
-        return false; // Dummy return value. Implement your own logic here then remove the comment.
+        return loans.size() >= this.getLoanLimit();
     }
 
     // Returns a human-readable name for the user type. This has already been implemented for you.

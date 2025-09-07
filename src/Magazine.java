@@ -3,6 +3,9 @@ public class Magazine extends LibraryItem {
 
     public Magazine(String title, int issueNumber) {
         super(title);
+        if (issueNumber <= 0) {
+            throw new IllegalArgumentException("Issue number cannot be less than zero");
+        }
         this.issueNumber = issueNumber;
 
     }
@@ -15,10 +18,6 @@ public class Magazine extends LibraryItem {
         this.issueNumber = issueNumber;
     }
 
-    @Override
-    public boolean isAvailableForLoan(){
-        return true;
-    }
     @Override
     public double getDailyLateFee() {
         return 0.50;

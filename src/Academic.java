@@ -10,7 +10,10 @@
 
     @Override
     public int getLoanPeriodForItem(LibraryItem item) {
-        return 14;
+        if (item == null) {
+            throw new IllegalArgumentException("Item cannot be null");
+        }
+        return item.getBaseLoanPeriod() + 14; //Returns item's base loan + academic's additional loan period
     }
 
     @Override

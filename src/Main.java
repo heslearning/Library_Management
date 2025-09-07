@@ -31,7 +31,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        populateTestData(); // Comment this out if you want to start with no test data.
+//        populateTestData(); // Comment this out if you want to start with no test data.
 
         boolean running = true;
         System.out.println("=== Library System Console Interface ===");

@@ -3,6 +3,9 @@ public class DVD extends LibraryItem {
 
     public DVD(String title, int runtimeMinutes) {
         super(title);
+        if (runtimeMinutes <= 0) {
+            throw new IllegalArgumentException("Runtime minutes cannot be less or equal to 0");
+        }
         this.runtimeMinutes = runtimeMinutes;
     }
 
@@ -14,10 +17,6 @@ public class DVD extends LibraryItem {
         this.runtimeMinutes = runtimeMinutes;
     }
 
-    @Override
-    public boolean isAvailableForLoan(){
-        return true;
-    }
 
     @Override
     public double getDailyLateFee() {

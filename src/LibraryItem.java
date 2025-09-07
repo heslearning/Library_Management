@@ -7,6 +7,9 @@ public abstract class LibraryItem {
 
     // LibraryItem Constructor.
     public LibraryItem(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null");
+        }
         this.title = title;
         loan = null;
     }
@@ -19,6 +22,9 @@ public abstract class LibraryItem {
 
     // Setter method for the item’s title. Should throw an appropriate exception if the title is not valid.
     public void setTitle(String title) {
+        if (title == null && title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be null or empty.");
+        }
         this.title = title;
     }
 
@@ -30,24 +36,32 @@ public abstract class LibraryItem {
     // Assigns the specified loan to the item. This method should perform appropriate validation checks to ensure
     // that the loan is valid for the item, and throw appropriate exceptions as needed.
     public void assignLoan(Loan loan) {
+        if (loan.getLibraryItem() != this) {
+            throw new IllegalArgumentException("Not the right item");
+        }
+        if (this.loan != null) {
+            throw new ItemUnavailableException("This item is already on loan.");
+        }
         this.loan = loan;
     }
 
     // Removes the specified loan from the user. Should throw an appropriate exception if the loan is not valid.
     public void removeLoan() {
+        if (loan == null) {
+            throw new ItemUnavailableException("Item is not on loan");
+        }
         loan = null;
     }
 
     // Returns true if currently loaned, otherwise false.
     public boolean isOnLoan() {
-        if (loan != null) {
-            return true;
-        }
-        return false;
+        return loan != null;
     }
 
     // Returns true if currently loaned, otherwise false.
-    public abstract boolean isAvailableForLoan();
+    public boolean isAvailableForLoan() {
+        return true;
+    }
 
     // Returns the specific daily late fee for the library item (use the table provided).
     // Use the table provided in the assignment documentation to generate the values for the daily late fee.

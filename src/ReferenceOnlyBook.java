@@ -6,7 +6,9 @@ public class ReferenceOnlyBook extends Book {
 
     @Override
     public void assignLoan(Loan loan) {
-        // Implement your own logic here then remove the comment.
+        if (true) {
+            throw new IllegalArgumentException("Item is not for loan.");
+        }
     }
 
 
